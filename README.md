@@ -11,4 +11,8 @@
 - Includes projects, personal information, and a contact form.
 
 ## Installation
-## Live: https://tu-portfolio.vercel.app
+
+## Contact
+- [LinkedIn](https://www.linkedin.com/in/daniel-carvajal-09b8752a6)
+- [GitHub](https://github.com/tuusuario)
+- [CV](./public/Daniel_Carvajal_CV.pdf)

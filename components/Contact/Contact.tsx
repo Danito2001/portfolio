@@ -2,7 +2,6 @@
 
 import { useContactForm } from "@/hook/useContactForm";
 import Link from "next/link";
-import { useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FiLinkedin } from "react-icons/fi";
 import { IoMailOutline } from "react-icons/io5";
@@ -12,13 +11,13 @@ const contactLinks = [
         icon: IoMailOutline,
         label: "Email",
         value: "cnavarrodaniel18@gmail.com",
-        href: "mailto:johndoe@gmail.com",
+        href: "mailto: cnavarrodaniel18@gmail.com",
     },
     {
         icon: FiLinkedin,
         label: "LinkedIn",
-        value: "linkedin.com/in/johndoe",
-        href: "https://linkedin.com/in/johndoe",
+        value: "linkedin.com/in/daniel-carvajal",
+        href: "https://www.linkedin.com/in/daniel-carvajal-09b8752a6",
     },
     {
         icon: FaGithub,
@@ -46,6 +45,7 @@ export default function Contact() {
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {contactLinks.map((contact, index) => {
                     const Icon = contact.icon
+
                     return (
                         <Link
                             key={index}
