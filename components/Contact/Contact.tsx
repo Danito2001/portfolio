@@ -2,6 +2,7 @@
 
 import { useContactForm } from "@/hook/useContactForm";
 import Link from "next/link";
+import { useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FiLinkedin } from "react-icons/fi";
 import { IoMailOutline } from "react-icons/io5";
@@ -30,7 +31,7 @@ const contactLinks = [
 
 export default function Contact() {
 
-    const { formValue, handleChange, handleSubmit } = useContactForm();
+    const { formValue, handleChange, handleSubmit, sended } = useContactForm();
     const { name, email, message } = formValue;
 
     return (
@@ -65,47 +66,58 @@ export default function Contact() {
 
             <div className="flex flex-col gap-y-2 sm:mx-20 lg:max-w-150 lg:mx-auto">
                 <p className="text-muted">Si tienes alguna consulta, puedes escribirme.</p>
-                <form
-                    onSubmit={handleSubmit}
-                    className="flex flex-col p-4 gap-y-4 border border-border  rounded-lg bg-card"
-                >
-                    <input
-                        type="text"
-                        name="name"
-                        value={name}
-                        onChange={handleChange}
-                        placeholder="Nombre"
-                        required
-                        minLength={4}
-                        className="text-white bg-accent"
-                    />
-                    <input
-                        type="email"
-                        name="email"
-                        value={email}
-                        onChange={handleChange}
-                        placeholder="Email"
-                        required
-                        className="text-white bg-accent"
-                    />
-                    <textarea
-                        name="message"
-                        placeholder="Mensaje"
-                        value={message}
-                        onChange={handleChange}
-                        required
-                        minLength={10}
-                        rows={4}
-                        className="text-white bg-accent"
-                    />
-
-                    <button
-                        type="submit"
-                        className="p-4 text-white text-sm bg-blue-700/20 cursor-pointer transition-colors hover:bg-blue-700/50"
+                <div className="relative">
+                    <form
+                        onSubmit={handleSubmit}
+                        className={`flex flex-col p-4 gap-y-4 border border-border rounded-lg bg-card transition-all duration-500
+                            ${sended ? "blur-xs pointer-events-none" : "blur-none pointer-events-auto"}
+                        `}
                     >
-                        Enviar
-                    </button>
-                </form>
+                        <input
+                            type="text"
+                            name="name"
+                            value={name}
+                            onChange={handleChange}
+                            placeholder="Nombre"
+                            required
+                            minLength={4}
+                            className="rounded-md p-2 text-white bg-accent"
+                        />
+                        <input
+                            type="email"
+                            name="email"
+                            value={email}
+                            onChange={handleChange}
+                            placeholder="Email"
+                            required
+                            className="rounded-md p-2 text-white bg-accent"
+                        />
+                        <textarea
+                            name="message"
+                            placeholder="Mensaje"
+                            value={message}
+                            onChange={handleChange}
+                            required
+                            minLength={10}
+                            rows={4}
+                            className="rounded-md p-2 text-white bg-accent"
+                        />
+
+                        <button
+                            type="submit"
+                            className="p-4 text-white text-sm bg-blue-700/20 cursor-pointer transition-colors hover:bg-blue-700/50"
+                        >
+                            Enviar
+                        </button>
+                    </form>
+                    {sended && (
+                        <div className="absolute inset-0 flex items-center justify-center z-10">
+                            <div className="bg-black/60 text-white px-6 py-3 rounded-lg">
+                                Correo enviado con exito! 🎉
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
 
             <div className="mt-60 border-t border-accent" />

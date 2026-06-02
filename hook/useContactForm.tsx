@@ -15,6 +15,7 @@ export const useContactForm = () => {
     }
 
     const [ formValue, setFormValue ] = useState<FormType>(initialValue);
+    const [ sended, setSended ] = useState(false);
 
     const handleChange = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 
@@ -27,11 +28,12 @@ export const useContactForm = () => {
     }
 
     const resetForm = () => setFormValue(initialValue)
+    const resetSended = () => setSended(false);
 
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        await fetch("/api/contact", {
+        const result = await fetch("/api/contact", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -39,13 +41,22 @@ export const useContactForm = () => {
             body: JSON.stringify(formValue)
         });
 
+        if (result.ok) {
+            setSended(true)
+        }
+
         resetForm();
+
+        setTimeout(() => {
+            resetSended()
+        }, 3000);
     }
 
 
     return {
         formValue,
         handleChange,
-        handleSubmit
+        handleSubmit,
+        sended
     }
 }
