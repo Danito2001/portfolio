@@ -14,5 +14,5 @@
 
 ## Contact
 - [LinkedIn](https://www.linkedin.com/in/daniel-carvajal-09b8752a6)
-- [GitHub](https://github.com/tuusuario)
+- [GitHub](https://github.com/Danito2001)
 - [CV](./public/Daniel_Carvajal_CV.pdf)
